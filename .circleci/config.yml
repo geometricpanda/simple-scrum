@@ -1,11 +1,15 @@
 version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/node:13.14.0-stretch
+
 jobs:
 
   build:
-    docker:
-      - image: circleci/node:13.14.0-stretch
+    executor: default
     steps:
-
       - checkout
       - run: npm ci
       - run: npx netlify build
@@ -16,10 +20,7 @@ jobs:
             - dist/simplescrum/browser/*
 
   test:
-
-    docker:
-      - image: circleci/node:13.14.0-stretch
-
+    executor: default
     steps:
       - checkout
       - run: npm ci
@@ -27,9 +28,7 @@ jobs:
       - run: npm test
 
   deploy:
-    docker:
-      - image: circleci/node:13.14.0-stretch
-
+    executor: default
     steps:
       - checkout
       - run: npx netlify deploy --prod
