@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, forwardRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatDrawer} from '@angular/material';
 import {AppStateService} from '../../app-state.service';
 import {BreakpointService} from '../observables/breakpoint.service';
@@ -14,9 +14,8 @@ export class BodyComponent implements AfterViewInit {
   @ViewChild(MatDrawer) drawer: MatDrawer;
   mode: 'push' | 'side' = 'push';
 
-  // TODO: Figure out why injected dependencies need to be a forwardRef or jest dies
-  constructor(@Inject(forwardRef(() => AppStateService)) private appState: AppStateService,
-              @Inject(forwardRef(() => BreakpointService)) private breakpointService: BreakpointService) {
+  constructor(private appState: AppStateService,
+              private breakpointService: BreakpointService) {
   }
 
   async calculateDrawerLogic(isMobile) {

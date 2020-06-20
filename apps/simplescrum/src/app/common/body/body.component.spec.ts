@@ -5,8 +5,6 @@ import {BodyModule} from './body.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {Component} from '@angular/core';
 import {AppStateService} from '../../app-state.service';
-import {By} from '@angular/platform-browser';
-import {MatDrawer} from '@angular/material';
 
 describe('BodyComponent', () => {
 

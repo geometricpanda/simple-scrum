@@ -1,4 +1,4 @@
-import {forwardRef, Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {map} from 'rxjs/operators';
 
@@ -18,8 +18,7 @@ export class BreakpointService {
     .pipe(map(({matches, ...rest}) => !matches));
 
 
-  // TODO: Figure out why injected dependency needs to be a forwardRef or jest dies
-  constructor(@Inject(forwardRef(() => BreakpointObserver)) private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver) {
   }
 
 }
