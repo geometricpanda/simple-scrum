@@ -155,33 +155,6 @@
           }
         }
       }
-    },
-    "simplescrum-e2e": {
-      "projectType": "application",
-      "root": "apps/simplescrum-e2e",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "apps/simplescrum-e2e/protractor.conf.js",
-            "devServerTarget": "simplescrum:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "simplescrum:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "apps/simplescrum-e2e/tsconfig.app.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
   "defaultProject": "simplescrum"

@@ -10,9 +10,6 @@
   "projects": {
     "simplescrum": {
       "tags": []
-    },
-    "simplescrum-e2e": {
-      "tags": []
     }
   }
 }
