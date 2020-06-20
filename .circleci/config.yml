@@ -30,8 +30,7 @@ jobs:
   deploy:
     executor: default
     steps:
-      - checkout
-      - run: npx netlify deploy --prod
+      - run: npx netlify-cli deploy --prod
 
 
 workflows:
