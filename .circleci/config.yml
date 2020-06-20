@@ -30,6 +30,8 @@ jobs:
   deploy:
     executor: default
     steps:
+      - attach_workspace:
+          at: /home/circleci/project
       - run: npx netlify-cli deploy --prod
 
 
