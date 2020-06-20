@@ -1,37 +1,81 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
 jobs:
 
   build:
-    executor:
-      name: node/default
+    docker:
+      - image: circleci/node:13.14.0-stretch
     steps:
+
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npx netlify build
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run: npx netlify build
+
       - persist_to_workspace:
           root: /home/circleci/project
           paths:
             - dist/simplescrum/browser/*
 
-  deploy:
-    executor:
-      name: node/default
+  test:
+
+    docker:
+      - image: circleci/node:13.14.0-stretch
+
     steps:
       - checkout
-      - attach_workspace:
-          at: /home/circleci/project
-      - node/with-cache:
-          steps:
-            - run: npx netlify deploy --prod
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run: npm run lint
+      - run: npm test
+
+  deploy:
+    docker:
+      - image: circleci/node:13.14.0-stretch
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run: npx netlify deploy --prod
 
 
 workflows:
-  build-deploy:
+  test-build-deploy:
     jobs:
+      - test
       - build
       - deploy:
           requires:
