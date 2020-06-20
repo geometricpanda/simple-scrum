@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderComponent should match the snapshot 1`] = `
+<app-header-spec>
+  <app-header>
+    <mat-toolbar
+      class="toolbar mat-toolbar mat-primary mat-toolbar-single-row"
+      color="primary"
+    >
+      <button
+        aria-label="Open the Side Menu"
+        class="mat-icon-button mat-button-base _mat-animation-noopable"
+        data-test="open-drawer-button"
+        mat-icon-button=""
+      >
+        <span
+          class="mat-button-wrapper"
+        >
+          <mat-icon
+            aria-hidden="true"
+            class="mat-icon notranslate material-icons mat-icon-no-color"
+            role="img"
+          >
+            menu
+          </mat-icon>
+        </span>
+        <div
+          class="mat-button-ripple mat-ripple mat-button-ripple-round"
+          matripple=""
+        />
+        <div
+          class="mat-button-focus-overlay"
+        />
+      </button>
+      <span
+        class="toolbar__title"
+      >
+        Simple Scrum
+      </span>
+    </mat-toolbar>
+  </app-header>
+</app-header-spec>
+`;

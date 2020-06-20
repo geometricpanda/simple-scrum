@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+:root {
+  --color-primary: #{map-get($mat-pink, 900)};
+  --color-accent: #{map-get($mat-blue, 900)};
+  --color-mid-grey: #E1E2E1;
+
+  --spacer-sm: 8px;
+  --spacer-md: 16px;
+  --spacer-lg: 24px;
+  --spacer-xl: 32px;
+}
