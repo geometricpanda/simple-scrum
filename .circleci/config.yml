@@ -7,19 +7,7 @@ jobs:
     steps:
 
       - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run: npm install
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-
+      - run: npm ci
       - run: npx netlify build
 
       - persist_to_workspace:
@@ -34,19 +22,7 @@ jobs:
 
     steps:
       - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run: npm install
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-
+      - run: npm ci
       - run: npm run lint
       - run: npm test
 
@@ -56,19 +32,6 @@ jobs:
 
     steps:
       - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run: npm install
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-
       - run: npx netlify deploy --prod
 
 
