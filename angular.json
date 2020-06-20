@@ -1,34 +1,40 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
     "simplescrum": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@nrwl/angular:application": {
+          "unitTestRunner": "jest"
+        },
+        "@nrwl/angular:library": {
+          "unitTestRunner": "jest"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/simplescrum",
+      "sourceRoot": "apps/simplescrum/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/simplescrum/browser",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/simplescrum",
+            "index": "apps/simplescrum/src/index.html",
+            "main": "apps/simplescrum/src/main.ts",
+            "polyfills": "apps/simplescrum/src/polyfills.ts",
+            "tsConfig": "apps/simplescrum/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/simplescrum/src/favicon.ico",
+              "apps/simplescrum/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "apps/simplescrum/src/styles.scss"
             ],
             "scripts": []
           },
@@ -36,8 +42,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/simplescrum/src/environments/environment.ts",
+                  "with": "apps/simplescrum/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -81,61 +87,40 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@nrwl/jest:jest",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "jestConfig": "apps/simplescrum/jest.config.js",
+            "tsConfig": "apps/simplescrum/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/simplescrum/src/test-setup.ts"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/simplescrum/tsconfig.app.json",
+              "apps/simplescrum/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
         },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "simplescrum:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "simplescrum:serve:production"
-            }
-          }
-        },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/simplescrum/server",
+            "outputPath": "dist/apps/simplescrum-server",
             "main": "server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "tsConfig": "apps/simplescrum/tsconfig.server.json"
           },
           "configurations": {
             "production": {
               "outputHashing": "media",
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/simplescrum/src/environments/environment.ts",
+                  "with": "apps/simplescrum/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -170,6 +155,34 @@
           }
         }
       }
-    }},
+    },
+    "simplescrum-e2e": {
+      "projectType": "application",
+      "root": "apps/simplescrum-e2e",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/simplescrum-e2e/protractor.conf.js",
+            "devServerTarget": "simplescrum:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "simplescrum:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/simplescrum-e2e/tsconfig.app.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "simplescrum"
 }
