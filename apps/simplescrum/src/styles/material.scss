@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config($font-family: 'Nunito');
+@include mat-core($custom-typography);
+
+
+$simplescrum-primary: mat-palette($mat-pink, 900);
+$simplescrum-accent: mat-palette($mat-blue, 500);
+$simplescrum-warn: mat-palette($mat-red);
+$simplescrum-theme: mat-light-theme($simplescrum-primary, $simplescrum-accent, $simplescrum-warn);
+
+@include angular-material-theme($simplescrum-theme);

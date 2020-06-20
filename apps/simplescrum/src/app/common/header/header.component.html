@@ -1,0 +1,13 @@
+<mat-toolbar class="toolbar" color="primary">
+
+  <button aria-label="Open the Side Menu"
+          data-test="open-drawer-button"
+          mat-icon-button
+          *ngIf="breakpointService.mobileBreakpoint | async"
+          (click)="toggleDrawer()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="toolbar__title">Simple Scrum</span>
+
+</mat-toolbar>

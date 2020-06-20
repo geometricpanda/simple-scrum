@@ -1,9 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Route, RouterModule, Routes} from '@angular/router';
+import {StartIndexComponent} from './start-index/start-index.component';
 
 const index: Route = {
   path: '',
-  loadChildren: () => import('./routes/start/start.module').then(mod => mod.StartModule),
+  pathMatch: 'full',
+  component: StartIndexComponent,
 };
 
 const routes: Routes = [
@@ -11,10 +13,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled',
-  })],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
+export class StartRoutingModule {
 }
