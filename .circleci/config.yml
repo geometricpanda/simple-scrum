@@ -3,7 +3,7 @@ jobs:
 
   build:
     docker:
-      - image: node:13.14.0-stretch-slim
+      - image: circleci/node:13.14.0-stretch
     steps:
 
       - checkout
@@ -30,7 +30,7 @@ jobs:
   test:
 
     docker:
-      - image: node:13.14.0-stretch-slim
+      - image: circleci/node:13.14.0-stretch
 
     steps:
       - checkout
@@ -52,7 +52,7 @@ jobs:
 
   deploy:
     docker:
-      - image: node:13.14.0-stretch-slim
+      - image: circleci/node:13.14.0-stretch
 
     steps:
       - checkout
@@ -75,11 +75,11 @@ jobs:
 workflows:
   test-build-deploy:
     jobs:
-      - test
+#      - test
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+#      - deploy:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master
