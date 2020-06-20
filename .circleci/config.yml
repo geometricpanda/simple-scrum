@@ -2,7 +2,8 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+
+  build:
     executor:
       name: node/default
     steps:
@@ -10,8 +11,31 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
-            - run: npm run prerender
+            - run: npx netlify build
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - dist/simplescrum/browser/*
+
+  deploy:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - node/with-cache:
+          steps:
+            - run: npx netlify deploy --prod
+
+
 workflows:
-  build-and-test:
+  build-deploy:
     jobs:
-      - build-and-test
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
