@@ -75,11 +75,11 @@ jobs:
 workflows:
   test-build-deploy:
     jobs:
-#      - test
+      - test
       - build
-#      - deploy:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
