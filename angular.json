@@ -111,7 +111,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/apps/simplescrum-server",
-            "main": "server.ts",
+            "main": "apps/simplescrum/server.ts",
             "tsConfig": "apps/simplescrum/tsconfig.server.json"
           },
           "configurations": {
