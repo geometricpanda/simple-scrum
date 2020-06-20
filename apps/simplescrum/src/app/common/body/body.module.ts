@@ -3,9 +3,10 @@ import {CommonModule} from '@angular/common';
 import {BodyComponent} from './body.component';
 import {MatSidenavModule} from '@angular/material';
 
-
 @NgModule({
-  declarations: [BodyComponent],
+  declarations: [
+    BodyComponent
+  ],
   imports: [
     CommonModule,
     MatSidenavModule,

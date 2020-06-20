@@ -1,5 +1,6 @@
 import {Component, forwardRef, Inject} from '@angular/core';
 import {AppStateService} from '../../app-state.service';
+import {BreakpointService} from '../observables/breakpoint.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,9 @@ import {AppStateService} from '../../app-state.service';
 })
 export class HeaderComponent  {
 
-  constructor(@Inject(forwardRef(() => AppStateService)) private appStateService: AppStateService) {
+  // TODO: Figure out why injected dependencies need to be a forwardRef or jest dies
+  constructor(@Inject(forwardRef(() => AppStateService)) private appStateService: AppStateService,
+              @Inject(forwardRef(() => BreakpointService)) public breakpointService: BreakpointService) {
   }
 
   async toggleDrawer() {

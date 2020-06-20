@@ -3,6 +3,7 @@
   <button aria-label="Open the Side Menu"
           data-test="open-drawer-button"
           mat-icon-button
+          *ngIf="breakpointService.mobileBreakpoint | async"
           (click)="toggleDrawer()">
     <mat-icon>menu</mat-icon>
   </button>

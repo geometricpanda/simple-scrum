@@ -7,6 +7,7 @@ exports[`HeaderComponent should match the snapshot 1`] = `
       class="toolbar mat-toolbar mat-primary mat-toolbar-single-row"
       color="primary"
     >
+      
       <button
         aria-label="Open the Side Menu"
         class="mat-icon-button mat-button-base _mat-animation-noopable"
